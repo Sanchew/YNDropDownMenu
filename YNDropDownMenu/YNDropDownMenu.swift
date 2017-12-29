@@ -565,7 +565,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 if let _buttonImageView = buttonImageView {
                     _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0);
 //                    _buttonImageView.image = self.buttonImages?.normal
-                    _buttonImageView.image = yNDropDownButton.buttonImages?.selected
+                    _buttonImageView.image = yNDropDownButton.buttonImages?.normal
                 }
                 
                 guard let alwaysOnIndex = self.alwaysOnIndex else { return }
