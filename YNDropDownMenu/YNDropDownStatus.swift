@@ -18,6 +18,7 @@ struct YNImages {
     
     /// Disabled UIImage
     var disabled: UIImage?
+    
 }
 
 /// Setting 3 status UIColor

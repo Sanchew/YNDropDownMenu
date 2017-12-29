@@ -150,8 +150,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     }
     
     open func setImageWhen(index: Int, normal: UIImage?, selected: UIImage?, disabled: UIImage?) {
-        self.buttonImages = YNImages(normal: normal, selected: selected, disabled: disabled)
-        dropDownButtons?[index].buttonImages = self.buttonImages
+        dropDownButtons?[index].buttonImages = YNImages(normal: normal, selected: selected, disabled: disabled)
     }
     
     /**
@@ -525,7 +524,8 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 }
                 if let _buttonImageView = buttonImageView {
                     _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0)
-                    _buttonImageView.image = self.buttonImages?.selected
+//                    _buttonImageView.image = self.buttonImages?.selected
+                    _buttonImageView.image = yNDropDownButton.buttonImages?.selected
                 }
                 yNDropDownButton.buttonLabel.textColor = self.buttonlabelFontColors?.selected
                 yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.selected
@@ -560,7 +560,8 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: CGFloat(self.menuHeight))
                 if let _buttonImageView = buttonImageView {
                     _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0);
-                    _buttonImageView.image = self.buttonImages?.normal
+//                    _buttonImageView.image = self.buttonImages?.normal
+                    _buttonImageView.image = yNDropDownButton.buttonImages?.selected
                 }
                 
                 guard let alwaysOnIndex = self.alwaysOnIndex else { return }
