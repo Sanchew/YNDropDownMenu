@@ -149,6 +149,10 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         
     }
     
+    open func setImageWhen(index: Int, normal: UIImage?, selected: UIImage?, disabled: UIImage?) {
+        self.buttonImages = YNImages(normal: normal, selected: selected, disabled: disabled)
+        dropDownButtons?[index].buttonImages = self.buttonImages
+    }
     
     /**
      Set arrow image or other images. Same image size is the best
