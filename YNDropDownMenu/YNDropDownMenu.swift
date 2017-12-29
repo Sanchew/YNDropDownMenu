@@ -23,8 +23,7 @@ public enum YNStatus {
 /// Main Class for YNDropDownMenu
 open class YNDropDownMenu: UIView, YNDropDownDelegate {
     internal var opened: Bool = false
-    internal var openedIndex: Int = 0
-    
+
     internal var dropDownButtons: [YNDropDownButton]?
     internal var menuHeight: CGFloat = 0.0
     internal var numberOfMenu: Int = 0
@@ -48,6 +47,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     internal var alwaysOnIndex: [Int]?
     internal var dropDownViewTitles: [String]?
     
+    open var openedIndex: Int = 0
     /// Blur effect view will changed if you change this popperty. Backgorund view don't have to be blur view (e.g. UIColor.black)
     open var blurEffectView: UIView? {
         didSet {
