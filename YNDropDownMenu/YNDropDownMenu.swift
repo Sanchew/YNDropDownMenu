@@ -81,8 +81,28 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     /// Hide menu spring damping Default value: *0.8*
     open var hideMenuSpringWithDamping:CGFloat = 0.8
     
+    open var cursorHeight:CGFloat = 3 {
+        didSet {
+            cursor.frame.size.height = cursorHeight
+        }
+    }
+    
+    open var cursorHidden:Bool = true {
+        didSet {
+            cursor.isHidden = cursorHidden
+        }
+    }
+    
+    open var cursorBackgroundColor:UIColor = .black {
+        didSet {
+            cursor.backgroundColor = cursorBackgroundColor
+        }
+    }
+    
     /// Bottom 0.5px line
     open var bottomLine: UIView!
+    
+    open var cursor: UIView!
     /**
      Init YNDropDownMenu with frame, views, strings. Views count and titles count should be same
      
@@ -505,6 +525,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 }
                 yNDropDownButton.buttonLabel.textColor = self.buttonlabelFontColors?.selected
                 yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.selected
+            self.cursor.frame.origin.x = yNDropDownButton.frame.minX
                 
         }, completion: { _ in
             didComplete?()
@@ -601,5 +622,10 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: originY, width: self.frame.width, height: UIScreen.main.bounds.size.height - originY)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blurEffectViewClicked(_:)))
         self.blurEffectView?.addGestureRecognizer(tapGesture)
+        
+        self.cursor = UIView(frame: CGRect(x: 0, y: menuHeight - cursorHeight, width: eachWidth, height: cursorHeight))
+        self.cursor.isHidden = cursorHidden
+        self.cursor.backgroundColor = cursorBackgroundColor
+        self.addSubview(self.cursor)
     }
 }
