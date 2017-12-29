@@ -149,6 +149,10 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         
     }
     
+    open func buttonImageView(index: Int) -> UIImageView? {
+        return dropDownButtons?[index].buttonImageView
+    }
+    
     open func setImage(index: Int, image: UIImage?) {
         dropDownButtons?[index].buttonImageView.image = image
     }
