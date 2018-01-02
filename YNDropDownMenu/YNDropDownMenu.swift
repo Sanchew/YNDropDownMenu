@@ -176,6 +176,13 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
+    open func setImageWhen(index: Int, normal: UIImage?, selectedTintColor: UIColor, disabledTintColor: UIColor) {
+        let selected = imageMaskingwithColor(selectedTintColor, image: normal)
+        let disabled = imageMaskingwithColor(disabledTintColor, image: normal)
+        
+        dropDownButtons?[index].buttonImages = YNImages.init(normal: normal, selected: selected, disabled: disabled)
+    }
+    
     
     /**
      Set an image for a drop-down button with various colors.
