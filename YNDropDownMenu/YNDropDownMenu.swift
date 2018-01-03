@@ -103,6 +103,12 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     open var bottomLine: UIView!
     
     open var cursor: UIView!
+    
+    
+    open var blurSiblingView: UIView {
+        return self
+    }
+    
     /**
      Init YNDropDownMenu with frame, views, strings. Views count and titles count should be same
      
@@ -521,7 +527,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         (dropDownView as? YNDropDownView)?.dropDownViewOpened()
         
         if self.backgroundBlurEnabled, let _blurEffectView = blurEffectView {
-            self.superview?.insertSubview(_blurEffectView, belowSubview: self)
+            blurSiblingView.superview?.insertSubview(_blurEffectView, belowSubview: blurSiblingView)
         }
         UIView.animate(
             withDuration: self.showMenuDuration,
