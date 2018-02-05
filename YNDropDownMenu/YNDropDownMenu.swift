@@ -23,7 +23,7 @@ public enum YNStatus {
 /// Main Class for YNDropDownMenu
 open class YNDropDownMenu: UIView, YNDropDownDelegate {
     internal var opened: Bool = false
-
+    
     internal var dropDownButtons: [YNDropDownButton]?
     internal var menuHeight: CGFloat = 0.0
     internal var numberOfMenu: Int = 0
@@ -512,9 +512,9 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     }
     
     internal func showMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (()-> Void)?) {
-//        guard
-//            let yNDropDownButton = yNDropDownButton,
-//            let dropDownView = dropDownView else { return }
+        //        guard
+        //            let yNDropDownButton = yNDropDownButton,
+        //            let dropDownView = dropDownView else { return }
         guard let yNDropDownButton = yNDropDownButton else { return }
         
         dropDownView?.isHidden = false
@@ -523,7 +523,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
             self.addSubview(dropDownView)
             self.sendSubview(toBack: dropDownView)
         }
-
+        
         (dropDownView as? YNDropDownView)?.dropDownViewOpened()
         
         if self.backgroundBlurEnabled, let _blurEffectView = blurEffectView {
@@ -544,13 +544,14 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                     self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: dropDownView.frame.height + CGFloat(self.menuHeight))
                 }
                 if let _buttonImageView = buttonImageView {
-                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0)
-//                    _buttonImageView.image = self.buttonImages?.selected
+                    //                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 1.0, 0.0, 0.0)
+                    _buttonImageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                    //                    _buttonImageView.image = self.buttonImages?.selected
                     _buttonImageView.image = yNDropDownButton.buttonImages?.selected
                 }
                 yNDropDownButton.buttonLabel.textColor = self.buttonlabelFontColors?.selected
                 yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.selected
-            self.cursor.frame.origin.x = yNDropDownButton.frame.minX
+                self.cursor.frame.origin.x = yNDropDownButton.frame.minX
                 
         }, completion: { _ in
             didComplete?()
@@ -558,9 +559,9 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     }
     
     internal func hideMenu(yNDropDownButton: YNDropDownButton?, buttonImageView: UIImageView?, dropDownView: UIView?, didComplete: (()-> Void)?) {
-//        guard
-//            let yNDropDownButton = yNDropDownButton,
-//            let dropDownView = dropDownView else { return }
+        //        guard
+        //            let yNDropDownButton = yNDropDownButton,
+        //            let dropDownView = dropDownView else { return }
         guard let yNDropDownButton = yNDropDownButton else { return }
         
         (dropDownView as? YNDropDownView)?.dropDownViewClosed()
@@ -580,8 +581,9 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 }
                 self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: CGFloat(self.menuHeight))
                 if let _buttonImageView = buttonImageView {
-                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0);
-//                    _buttonImageView.image = self.buttonImages?.normal
+                    //                    _buttonImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 0.0);
+                    _buttonImageView.transform = CGAffineTransform(rotationAngle: 0)
+                    //                    _buttonImageView.image = self.buttonImages?.normal
                     _buttonImageView.image = yNDropDownButton.buttonImages?.normal
                 }
                 
@@ -603,7 +605,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     
     internal func changeBlurEffectView() {
         let originY = self.frame.origin.y + menuHeight + 5
-
+        
         self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: originY, width: self.frame.width, height: UIScreen.main.bounds.size.height - originY)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blurEffectViewClicked(_:)))
         self.blurEffectView?.addGestureRecognizer(tapGesture)
@@ -655,3 +657,4 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         self.addSubview(self.cursor)
     }
 }
+
