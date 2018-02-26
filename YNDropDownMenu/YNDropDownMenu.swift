@@ -105,7 +105,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     open var cursor: UIView!
     
     
-    open var blurSiblingView: UIView {
+    open var blurSiblingView: UIView! {
         return self
     }
     
@@ -605,7 +605,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     
     internal func changeBlurEffectView() {
 //        let originY = self.frame.origin.y + menuHeight + 5
-        let originY = self.blurSiblingView.frame.origin.y + menuHeight + 5
+        let originY = (self.blurSiblingView?.frame.origin.y ?? self.frame.origin.y) + menuHeight + 5
         
         self.blurEffectView?.frame = CGRect(x: self.frame.origin.x, y: originY, width: self.frame.width, height: UIScreen.main.bounds.size.height - originY)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blurEffectViewClicked(_:)))
