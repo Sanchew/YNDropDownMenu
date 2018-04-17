@@ -87,6 +87,8 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
+    open var cursorPaddingHorizontal:CGFloat = 0
+    
     open var cursorHidden:Bool = true {
         didSet {
             cursor.isHidden = cursorHidden
@@ -552,7 +554,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
                 }
                 yNDropDownButton.buttonLabel.textColor = self.buttonlabelFontColors?.selected
                 yNDropDownButton.buttonLabel.font = self.buttonlabelFonts?.selected
-                self.cursor.frame.origin.x = yNDropDownButton.frame.minX
+                self.cursor.frame.origin.x = yNDropDownButton.frame.minX + self.cursorPaddingHorizontal
                 
         }, completion: { _ in
             didComplete?()
@@ -652,7 +654,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(blurEffectViewClicked(_:)))
         self.blurEffectView?.addGestureRecognizer(tapGesture)
         
-        self.cursor = UIView(frame: CGRect(x: 0, y: menuHeight - cursorHeight, width: eachWidth, height: cursorHeight))
+        self.cursor = UIView(frame: CGRect(x: cursorPaddingHorizontal, y: menuHeight - cursorHeight, width: eachWidth - cursorPaddingHorizontal * 2, height: cursorHeight))
         self.cursor.isHidden = cursorHidden
         self.cursor.backgroundColor = cursorBackgroundColor
         self.addSubview(self.cursor)
