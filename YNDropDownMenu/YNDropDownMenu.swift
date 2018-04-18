@@ -87,7 +87,14 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
     }
     
-    open var cursorPaddingHorizontal:CGFloat = 0
+    open var cursorPaddingHorizontal:CGFloat = 0 {
+        didSet {
+            var frame = self.cursor.frame
+            frame.origin.x = frame.origin.x + cursorPaddingHorizontal
+            frame.size.width = frame.size.width - cursorPaddingHorizontal * 2
+            self.cursor.frame = frame
+        }
+    }
     
     open var cursorHidden:Bool = true {
         didSet {
