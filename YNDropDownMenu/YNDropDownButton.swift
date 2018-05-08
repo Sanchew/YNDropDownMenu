@@ -91,7 +91,7 @@ class YNDropDownButton: UIButton {
         
         guard let _buttonImage = buttonImages?.normal else { return }
         
-        let centerXwithOffsetConstraintImage = NSLayoutConstraint(item: buttonLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: -((_buttonImage.size.height+4)/2))
+        let centerXwithOffsetConstraintImage = NSLayoutConstraint(item: buttonLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: -((_buttonImage.size.width+4)/2))
         
         let centerYConstraintImage = NSLayoutConstraint(item: buttonLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
         
