@@ -39,7 +39,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         }
         set {
             guard let _dropDownViews = newValue else { return }
-            _dropDownViews.flatMap({ $0 as? YNDropDownView }).forEach { $0.delegate = self }
+            _dropDownViews.compactMap({ $0 as? YNDropDownView }).forEach { $0.delegate = self }
             self._dropDownViews = newValue
         }
     }
@@ -58,7 +58,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
     open var blurEffectViewAlpha:CGFloat = 1.0
     
     /// Blur effect style in background view
-    open var blurEffectStyle:UIBlurEffectStyle = .dark
+    open var blurEffectStyle:UIBlurEffect.Style = .dark
     
     /// Make background blur view enabled
     open var backgroundBlurEnabled = true
@@ -530,7 +530,7 @@ open class YNDropDownMenu: UIView, YNDropDownDelegate {
         
         if let dropDownView = dropDownView {
             self.addSubview(dropDownView)
-            self.sendSubview(toBack: dropDownView)
+            self.sendSubviewToBack(dropDownView)
         }
         
         (dropDownView as? YNDropDownView)?.dropDownViewOpened()
